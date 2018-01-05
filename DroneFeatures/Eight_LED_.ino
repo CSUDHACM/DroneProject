@@ -1,5 +1,9 @@
 //www.elegoo.com
 //2016.12.9 
+//modified code from elegoo arduino kit, 1/4/2018
+//Author: Esther
+//LEDs on even positions turn on first, then LEDs on odd positions turn on next
+//materials used: arduino uno, 8 LEDs, 8 resistors, 74HC595 chip, breadboard
 
 int tDelay = 100;
 int latchPin = 11;      // (11) ST_CP [RCK] on 74HC595
