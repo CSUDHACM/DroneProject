@@ -1,3 +1,7 @@
+// Author: Thar 
+// Program: Calibrates 3 motors at that same time.
+
+
 #include <Servo.h>
 
 #define MAX_SIGNAL 2000
