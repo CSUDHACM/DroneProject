@@ -1,3 +1,6 @@
+// Author: Kevin R.
+// Program: Calibrates 4 motor at once.
+
 #include <Servo.h>
 
 #define Max_Strength 2000
