@@ -4,7 +4,7 @@ This is the README.md file 1/2/18
 this is the drone repo and we would create our drone here
 
 ## Drone: Motor Calibration
-Motor Calibration Schematic: calibration.ino, calibration2.ino
+Motor Calibration Schematic: [](DroneProject/calibration.ino), [](DroneProject/calibration2.ino)
 
 Components:
 - Arduino Uno
