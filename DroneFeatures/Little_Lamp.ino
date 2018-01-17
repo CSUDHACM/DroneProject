@@ -1,6 +1,7 @@
 //Created by Maria Perez — 2018.1.4
 /*
  * Purpose of this is to have the lights go with the sounds.
+ * Video: https://youtu.be/yYdAFnE6wA0
  */
  #include "pitches.h"
 
