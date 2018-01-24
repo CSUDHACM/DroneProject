@@ -5,17 +5,23 @@ int ch3;
 int ch4;
 
 Servo motor;
+Servo motorB;
+Servo motorC;
+Servo motorD;
 int turn;
 
 void setup() 
 {
-  //pinMode(5, INPUT); // Set input pin 5 as an input
-  //pinMode(6, INPUT);
-  pinMode(7, INPUT);
-  //pinMode(8, INPUT);
+ pinMode(8, INPUT); // Set input pin 8 as an input
+  pinMode(9, INPUT); //Attaching the pins
+  pinMode(10, INPUT);
+  pinMode(11, INPUT);
   Serial.begin(9600); // Pour a bowl of Serial
 
   motor.attach(9);
+   motorB.attach(9); // attaching pins
+  motorC.attach(10);
+  motorD.attach(11);
 }
 
 void loop() 
@@ -29,6 +35,9 @@ void loop()
   Serial.print(ch3);
   Serial.print("  |  ");
   motor.writeMicroseconds(ch3);
+  motorB.writeMicroseconds(ch3); // Attaching motors to the input
+  motorC.writeMicroseconds(ch3);
+  motorD.writeMicroseconds(ch3);
   Serial.print("\n");
 
   
