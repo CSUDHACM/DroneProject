@@ -1,6 +1,8 @@
 #include <CoDrone.h>
 /*
  * Created by Maria Perez [2017 - 2018]
+ * Edited by:
+ *
  */
 
 void setup() {
