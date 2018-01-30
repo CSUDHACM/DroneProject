@@ -23,8 +23,8 @@ void setup()
   motor3.attach(5);
   motor4.attach(4);
 
-  motor1.writeMicroseconds(1000);
-  motor2.writeMicroseconds(1000);
+  motor1.writeMicroseconds(1000); // code, so the motors dont spin when the lipo battery is connected
+  motor2.writeMicroseconds(1000); 
   motor3.writeMicroseconds(1000);
   motor4.writeMicroseconds(1000);
   
