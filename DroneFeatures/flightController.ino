@@ -4,40 +4,46 @@ int ch2;
 int ch3;
 int ch4;
 
-Servo motor;
-Servo motorB;
-Servo motorC;
-Servo motorD;
+Servo motor1;
+Servo motor2;
+Servo motor3;
+Servo motor4;
 int turn;
 
 void setup() 
 {
- pinMode(8, INPUT); // Set input pin 8 as an input
-  pinMode(9, INPUT); //Attaching the pins
-  pinMode(10, INPUT);
-  pinMode(11, INPUT);
+//  pinMode(5, INPUT); // Set input pin 5 as an input
+//  pinMode(6, INPUT);
+  pinMode(13, INPUT);
+  //pinMode(8, INPUT);
   Serial.begin(9600); // Pour a bowl of Serial
 
-  motor.attach(9);
-   motorB.attach(9); // attaching pins
-  motorC.attach(10);
-  motorD.attach(11);
+  motor1.attach(7);
+  motor2.attach(6);
+  motor3.attach(5);
+  motor4.attach(4);
+
+  motor1.writeMicroseconds(1000);
+  motor2.writeMicroseconds(1000);
+  motor3.writeMicroseconds(1000);
+  motor4.writeMicroseconds(1000);
+  
 }
 
 void loop() 
 {
   //ch1 = pulseIn(5, HIGH); // Read the pulse 
   //ch2 = pulseIn(6, HIGH); 
-  ch3 = pulseIn(7, HIGH); 
+  ch3 = pulseIn(13, HIGH); 
   //ch4 = pulseIn(8, HIGH);
   
   Serial.print("Ch3: ");
   Serial.print(ch3);
   Serial.print("  |  ");
-  motor.writeMicroseconds(ch3);
-  motorB.writeMicroseconds(ch3); // Attaching motors to the input
-  motorC.writeMicroseconds(ch3);
-  motorD.writeMicroseconds(ch3);
+  motor1.writeMicroseconds(ch3);
+  motor2.writeMicroseconds(ch3);
+  motor3.writeMicroseconds(ch3);
+  motor4.writeMicroseconds(ch3);
   Serial.print("\n");
 
   
