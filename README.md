@@ -16,3 +16,18 @@ Components:
 - (9) male-to-male jumper wires
 
 ![ ](DroneSchematics/ACMMotorCalibrationSchematic.jpg)
+
+## Drone: Motors/ESCs and Receiver Connected to Arduino
+Motors/ESCs + Receiver connected to Arduino on Drone schematic:
+
+Components:
+- Drone frame
+- Arduino Uno
+- (4) Brushless Motors
+- (4) ESCs
+- power distribution board
+- 6 channels receiver
+- lipo battery
+- (4) male-to-male jumper wires
+
+![ ](DroneSchematics/ACMDroneMotorsESCs.jpg)
