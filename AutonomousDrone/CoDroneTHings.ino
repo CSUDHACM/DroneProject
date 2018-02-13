@@ -21,7 +21,7 @@ analogStick();
       delay(250);
       CoDrone.Control();
     }
-  */
+  
  ///////////////LED Fun/////////////// [[ in progress ]]
  
  for(int i: 255)
@@ -31,7 +31,7 @@ analogStick();
  for(int i: 255)
   CoDrone.LedColor(mode, 1, 1, i, 5); 
  for(int i: 255)
-  CoDrone.LedColor(mode, i, 1, 1, 5);*/
+  CoDrone.LedColor(mode, i, 1, 1, 5);
 if(millis() - setTime){
   Serial.print(millis());
   Serial.print(":  ");
