@@ -15,13 +15,60 @@ void setup() {
 void loop() {
 startUP();
 irSensors();
-analogStick();  
+analogStick(); 
+//ledFun();
+}
+void irSensors(){
+  ///////////////IR SENSORS ON BACK/////////////// 
+  if(digitalRead(11)){ //Left Sensor turns on device
+    CoDrone.FlightEvent(Landing);
+  }
+
+  if(digitalRead(12)){//spins if you hold the 12 sensor
+   for(int i = 0; i < 4; i++){
+      YAW = 90;//with the speed of 90
+      delay(250);// 1/4       OF A SECOND
+    }
+    CoDrone.Control();
+  }
+
+  if(digitalRead(11) && digitalRead(14) && digitalRead(18)){//emergency off switch
+    CoDrone.FlightEvent(Stop); 
+  }
+  
  /* if(digitalRead(17)){//goes down [[ IN CONSTRUCTION ]]
       THROTTLE = -90;
       delay(250);
       CoDrone.Control();
     }
+  */
+}
+ 
+
+void analogStick(){
   
+ ///////////////Analog Stick Part///////////////  
+  if(PAIRING == true){//checks if drone is connected to the controller
+  YAW = -1 * CoDrone.AnalogScaleChange(analogRead(25)); //normally analog read returns a number from 0 ~ 1023
+  THROTTLE = CoDrone.AnalogScaleChange(analogRead(24)); //scale change scales the number down to -100 ~ 100
+  ROLL = -1 * CoDrone.AnalogScaleChange(analogRead(22)); //thevariables YAW,THROTTLE, ETC
+  PITCH = CoDrone.AnalogScaleChange(analogRead(23));    //only accepts numbers from -100~100
+  CoDrone.Control();
+  }
+  
+}
+void startUP(){
+
+  ///////////////The Start Up///////////////
+ if(digitalRead(18)){  //Turns on Drone
+    CoDrone.FlightEvent(TakeOff);
+    delay(250);
+    CoDrone.Control(); //stabilizes 
+ }
+}
+void ledFun(){
+   
+  /*
  ///////////////LED Fun/////////////// [[ in progress ]]
  
  for(int i: 255)
@@ -50,45 +97,5 @@ if(millis() - setTime){
 }
 */
 
-}
-void irSensors(){
-  ///////////////IR SENSORS ON BACK/////////////// 
-  if(digitalRead(11)){ //Left Sensor turns on device
-    CoDrone.FlightEvent(Landing);
-  }
-
-  if(digitalRead(12)){//spins if you hold the 12 sensor
-   for(int i = 0; i < 4; i++){
-      YAW = 90;//with the speed of 90
-      delay(250);// 1/4       OF A SECOND
-    }
-    CoDrone.Control();
-  }
-
-  if(digitalRead(11) && digitalRead(14) && digitalRead(18)){//emergency off switch
-    CoDrone.FlightEvent(Stop); 
-  }
-}
- 
-
-void analogStick(){
-  
- ///////////////Analog Stick Part///////////////  
-  if(PAIRING == true){//checks if drone is connected to the controller
-  YAW = -1 * CoDrone.AnalogScaleChange(analogRead(25)); //normally analog read returns a number from 0 ~ 1023
-  THROTTLE = CoDrone.AnalogScaleChange(analogRead(24)); //scale change scales the number down to -100 ~ 100
-  ROLL = -1 * CoDrone.AnalogScaleChange(analogRead(22)); //thevariables YAW,THROTTLE, ETC
-  PITCH = CoDrone.AnalogScaleChange(analogRead(23));    //only accepts numbers from -100~100
-  CoDrone.Control();
-  }
-}
-void startUP(){
-
-  ///////////////The Start Up///////////////
- if(digitalRead(18)){  //Turns on Drone
-    CoDrone.FlightEvent(TakeOff);
-    delay(250);
-    CoDrone.Control(); //stabilizes 
- }
 }
 
