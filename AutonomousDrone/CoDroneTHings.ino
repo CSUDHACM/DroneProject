@@ -5,8 +5,17 @@
  * Modified By:
  * 
  * Uses COM 7 & Rokit-SmartInventor-mega32_v2
+ * Sensors currently in use:
+ * 18 = Rise
+ * 14 = Spin widly
+ * 12 = Change color to blue
+ * 11 = Land
+ * 11 + 14 + 18 = Force Stop
+ * 
+ * 
  */
 
+unsigned long Timer; // for color
 void setup() {
   CoDrone.begin(115200);
   CoDrone.AutoConnect(NearbyDrone); //connects the drone
@@ -15,62 +24,33 @@ void setup() {
 void loop() {
 startUP();
 irSensors();
-analogStick(); 
-//ledFun();
-}
-void irSensors(){
-  ///////////////IR SENSORS ON BACK/////////////// 
-  if(digitalRead(11)){ //Left Sensor turns on device
-    CoDrone.FlightEvent(Landing);
-  }
-
-  if(digitalRead(12)){//spins if you hold the 12 sensor
-   for(int i = 0; i < 4; i++){
-      YAW = 90;//with the speed of 90
-      delay(250);// 1/4       OF A SECOND
-    }
-    CoDrone.Control();
-  }
-
-  if(digitalRead(11) && digitalRead(14) && digitalRead(18)){//emergency off switch
-    CoDrone.FlightEvent(Stop); 
-  }
-  
+analogStick();  
  /* if(digitalRead(17)){//goes down [[ IN CONSTRUCTION ]]
       THROTTLE = -90;
       delay(250);
       CoDrone.Control();
     }
   */
-}
- 
-
-void analogStick(){
-  
- ///////////////Analog Stick Part///////////////  
-  if(PAIRING == true){//checks if drone is connected to the controller
-  YAW = -1 * CoDrone.AnalogScaleChange(analogRead(25)); //normally analog read returns a number from 0 ~ 1023
-  THROTTLE = CoDrone.AnalogScaleChange(analogRead(24)); //scale change scales the number down to -100 ~ 100
-  ROLL = -1 * CoDrone.AnalogScaleChange(analogRead(22)); //thevariables YAW,THROTTLE, ETC
-  PITCH = CoDrone.AnalogScaleChange(analogRead(23));    //only accepts numbers from -100~100
-  CoDrone.Control();
-  }
-  
-}
-void startUP(){
-
-  ///////////////The Start Up///////////////
- if(digitalRead(18)){  //Turns on Drone
-    CoDrone.FlightEvent(TakeOff);
-    delay(250);
-    CoDrone.Control(); //stabilizes 
- }
-}
-void ledFun(){
-   
-  /*
  ///////////////LED Fun/////////////// [[ in progress ]]
+
  
+ /* if(digitalRead(12)){
+    CoDrone.LedColor(ArmHold, PapayaWhip, 20);
+    /*delay(200);
+    CoDrone.LedColor(ArmDimming, HoneyDew ,20);
+    delay(200);
+  }
+  if(digitalRead(13)){
+ }
+
+  if(digitalRead(16)){
+    CoDrone.LedColor(EyeFlicker, MediumPurple, 20);
+  }
+
+  if(digitalRead(18)){
+    
+  }*/
+ /*
  for(int i: 255)
   CoDrone.LedColor(mode, i, 1, 1, 5);
  for(int i: 255)
@@ -98,4 +78,54 @@ if(millis() - setTime){
 */
 
 }
+void irSensors(){
+  ///////////////IR SENSORS ON BACK/////////////// 
+  if(digitalRead(11)){ //Left Sensor turns on device
+    CoDrone.FlightEvent(Landing);
+  }
 
+  if(digitalRead(12)){//spins if you hold the 12 sensor
+   for(int i = 0; i < 4; i++){
+      YAW = 90;//with the speed of 90
+      delay(250);// 1/4       OF A SECOND
+    }
+    CoDrone.Control();
+  }
+
+  if(digitalRead(11) && digitalRead(14) && digitalRead(18)){//emergency off switch
+    CoDrone.FlightEvent(Stop); 
+  }
+}
+ 
+
+void analogStick(){
+  
+ ///////////////Analog Stick Part///////////////  
+  if(PAIRING == true){//checks if drone is connected to the controller
+  
+  YAW = -1 * CoDrone.AnalogScaleChange(analogRead(22)); //normally analog read returns a number from 0 ~ 1023
+  ROLL = -1 * CoDrone.AnalogScaleChange(analogRead(23)); //thevariables YAW,THROTTLE, ETC
+  PITCH = CoDrone.AnalogScaleChange(analogRead(24));    //only accepts numbers from -100~100
+  THROTTLE = CoDrone.AnalogScaleChange(analogRead(25)); //scale change scales the number down to -100 ~ 100
+  CoDrone.Control(SEND_INTERVAL);
+  }
+
+  if(millis() - Timer < 1000){
+    CoDrone.LedColor(ArmDimming, Cyan, 7);
+  }
+  else if(millis() - Timer < 2000){
+    CoDrone.LedColor(ArmDimming, Green, 7);
+  }
+  else{
+    Timer = millis();
+  }
+}
+void startUP(){
+
+  ///////////////The Start Up///////////////
+ if(digitalRead(18)){  //Turns on Drone
+    CoDrone.FlightEvent(TakeOff);
+    delay(250);
+    CoDrone.Control(); //stabilizes 
+ }
+}
