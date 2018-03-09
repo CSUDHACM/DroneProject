@@ -1,0 +1,21 @@
+var ardrone=require("ar-drone");
+var client = ardrone.createClient();
+
+/*client.on('navdata', console.log);*/
+
+client
+	.after(2000,function(){
+		this.takeoff();
+	})
+	.after(2000,function(){
+		this.back();
+	})
+	.after(2500,function(){
+		this.stop();
+	})
+	.after(4000,function(){
+		this.left();
+	})
+	.after(10000,function(){
+		this.land();
+	});
