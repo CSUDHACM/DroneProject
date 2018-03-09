@@ -12,10 +12,10 @@ int turn;
 
 void setup() 
 {
-//  pinMode(5, INPUT); // Set input pin 5 as an input
+//  pinMode(7, INPUT); // Set input pin 5 as an input
 //  pinMode(6, INPUT);
-  pinMode(13, INPUT);
-  //pinMode(8, INPUT);
+  pinMode(5, INPUT);
+  //pinMode(4, INPUT);
   Serial.begin(9600); // Pour a bowl of Serial
 
   motor1.attach(7);
@@ -32,10 +32,10 @@ void setup()
 
 void loop() 
 {
-  //ch1 = pulseIn(5, HIGH); // Read the pulse 
-  //ch2 = pulseIn(6, HIGH); 
-  ch3 = pulseIn(13, HIGH); 
-  //ch4 = pulseIn(8, HIGH);
+  //ch1 = pulseIn(8, HIGH); // Read the pulse 
+  //ch2 = pulseIn(9, HIGH); 
+  ch3 = pulseIn(10, HIGH); 
+  //ch4 = pulseIn(11, HIGH);
   
   Serial.print("Ch3: ");
   Serial.print(ch3);
