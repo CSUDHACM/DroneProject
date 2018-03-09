@@ -1,0 +1,15 @@
+var ardrone=require("ar-drone");
+var client = ardrone.createClient();  //Creating a client to access the method of arDrone
+
+/*client.on('navdata', console.log);*/
+
+client
+	.after(2000,function(){
+		this.takeoff();                 //Method which can be used to perform takeoff
+	})
+	.after(3000,function(){
+    this.clockwise(1);              //Rotates drone clockwise(speed)
+  )
+	.after(10000,function(){
+		this.land();                  //Lands the drone
+	});
