@@ -22,6 +22,8 @@ int gyro_x, gyro_y, gyro_z;
 long gyro_x_cal, gyro_y_cal, gyro_z_cal;
 boolean set_gyro_angles;
 
+ boolean move = false;
+
 
 long acc_x, acc_y, acc_z, acc_total_vector;
 float angle_roll_acc, angle_pitch_acc;
@@ -141,7 +143,7 @@ ISR(PCINT0_vect){
 void loop() {
 
  
- boolean move = false;
+
   
   if((receiver_input_channel_3 < 1100) && (receiver_input_channel_4) >= 1900 )
   {
@@ -160,7 +162,7 @@ void loop() {
      motor2.writeMicroseconds(900);
      motor3.writeMicroseconds(900);
      motor4.writeMicroseconds(900);
-    // move = false;
+    move = false;
   }
 
   if((angle_pitch_output > 30 || angle_pitch_output < -30) || (angle_roll_output > 20 || angle_roll_output < -30))
@@ -171,10 +173,13 @@ void loop() {
      motor4.writeMicroseconds(900);
   }
   
-  /*if(move)
+  if(move)
   {
     motor1.writeMicroseconds(receiver_input_channel_3);
-  }*/
+    motor2.writeMicroseconds(receiver_input_channel_3);
+    motor3.writeMicroseconds(receiver_input_channel_3);
+    motor4.writeMicroseconds(receiver_input_channel_3);
+  }
 
 
   read_mpu_6050_data();   
