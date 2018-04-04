@@ -104,9 +104,9 @@ void analogStick(){
   if(PAIRING == true){//checks if drone is connected to the controller
   
   YAW = -1 * CoDrone.AnalogScaleChange(analogRead(22)); //normally analog read returns a number from 0 ~ 1023
-  ROLL = -1 * CoDrone.AnalogScaleChange(analogRead(23)); //thevariables YAW,THROTTLE, ETC
-  PITCH = CoDrone.AnalogScaleChange(analogRead(24));    //only accepts numbers from -100~100
-  THROTTLE = CoDrone.AnalogScaleChange(analogRead(25)); //scale change scales the number down to -100 ~ 100
+  ROLL = -1 * CoDrone.AnalogScaleChange(analogRead(24)); //thevariables YAW,THROTTLE, ETC
+  PITCH = CoDrone.AnalogScaleChange(analogRead(25));    //only accepts numbers from -100~100
+  THROTTLE = CoDrone.AnalogScaleChange(analogRead(23)); //scale change scales the number down to -100 ~ 100
   CoDrone.Control(SEND_INTERVAL);
   }
 
