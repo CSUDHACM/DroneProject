@@ -7,8 +7,8 @@ void setup() {
   CoDrone.FlightEvent(TakeOff);     //Drone takes off for 2 seconds
   delay(2000);
   CoDrone.FlightEvent(Landing);     //Drone lands
-  delay(500);
-  CoDrone.LedColor(EyeHold, Gold); //Changes color of the eye to Gold
+  //delay(500);
+  //CoDrone.LedColor(EyeHold, Gold); //Changes color of the eye to Gold
 }
 
 void loop() {
