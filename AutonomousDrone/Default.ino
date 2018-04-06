@@ -31,6 +31,6 @@ void loop() {
     THROTTLE  = CoDrone.AnalogScaleChange(analogRead(A4)); 
     ROLL = -1 * CoDrone.AnalogScaleChange(analogRead(A5)); 
     PITCH = CoDrone.AnalogScaleChange(analogRead(A6)); 
-    CoDrone.Control(); //Sends analog input to the drone for execution.
+    CoDrone.Control(SEND_INTERVAL); //Sends analog input to the drone for execution.
   }
 }
